@@ -1,0 +1,98 @@
+Core Java
+
+1. How do you check the equality of two arrays in java?
+Answer:
+=======
+By using Arrays.equals()
+
+
+
+3. Write a java program to find all pairs of elements in the given array whose sum is equal to a given number.
+
+For example, if {4, 5, 7, 11, 9, 13, 8, 10} is an array and 18 is the given number, then you must find all pairs of elements in this array whose sum must be 20.
+
+In this example, (7, 11), (5, 13) and (8, 10) are such pairs whose sum is 18. 
+
+
+Code:
+=====
+
+	import java.util.*;
+
+public class ThirdEX {
+   
+  public static void getPairsCount(int a[], int sum)
+    {
+   int count = 0; 
+        for (int i = 0; i < a.length; i++) {
+            for (int j = i + 1; j < a.length; j++) {
+                if ((a[i] + a[j]) == sum) {
+                    count++;
+                }
+            }
+        }
+        System.out.printf("Count of pairs is %d", count);
+      
+ }
+    public static void main(String args[])
+    {
+        int a[] = { 4, 5, 7, 11, 9, 13, 8, 10 };
+        int sum = 18;
+        getPairsCount(a, sum);
+    }
+}
+
+
+Answer:
+=======
+Count of pairs is: 3
+
+4.       Write a java program to find the Default IP and MAC address.
+
+Code:
+=====
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
+import java.net.UnknownHostException;
+
+public class FourthEx{
+	
+   public static void main(String[] args){
+		
+	InetAddress ip;
+	try {
+			
+		ip = InetAddress.getLocalHost();
+		System.out.println("Current IP address : " + ip.getHostAddress());
+		
+		NetworkInterface network = NetworkInterface.getByInetAddress(ip);
+			
+		byte[] mac = network.getHardwareAddress();
+			
+		System.out.print("Current MAC address : ");
+			
+		StringBuilder sb = new StringBuilder();
+		for (int i = 0; i < mac.length; i++) {
+			sb.append(String.format("%02X%s", mac[i], (i < mac.length - 1) ? "-" : ""));		
+		}
+		System.out.println(sb.toString());
+			
+	} catch (UnknownHostException e) {
+		
+		e.printStackTrace();
+		
+	} catch (SocketException e){
+			
+		e.printStackTrace();
+			
+	}
+	    
+   }
+
+}
+
+Answer: 
+=======
+Current IP address : 192.168.43.22
+Current MAC address : F8-63-3F-99-9A-3F
